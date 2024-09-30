@@ -12,6 +12,53 @@ class Product {
     }
 }
 
+class Inventory {
+    private products: Product[];
+
+    constructor() {
+        this.products = [];
+    }
+
+    public addProduct(product: Product): void {
+        this.products.push(product);
+    }
+
+    public removeProduct(productId: string): void {
+        this.products = this.products.filter(function(product) {
+            return product.id !== productId;
+        });
+    }
+
+    public searchProduct(search: string): Product | undefined {
+        return this.products.find(function(product) {
+            return product.id === search {
+    private products: Product[];
+
+    constructor() {
+        this.products = [];
+    }
+
+    public addProduct(product: Product): void {
+        this.products.push(product);
+    }
+
+    public removeProduct(productId: string): void {
+        this.products = this.products.filter(function(product) {
+            return product.id !== productId;
+        });
+    }
+
+    public searchProduct(search: string): Product | undefined {
+        return this.products.find(function(product) {
+            return product.id === search;
+        });
+    }
+
+    public listProducts(): Product[] {
+        return this.products;
+    }
+};
+        });
 
 
 class Order {
@@ -38,4 +85,29 @@ enum Status {
     New = 'New',
     Processing = 'Processing',
     Delivered = 'Delivered'
+}
+
+
+class User {
+    public userId: string;
+    public name: string;
+    public email: string;
+    public orders: Order[];
+
+    constructor(userId: string, name: string, email: string) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.orders = [];
+    }
+
+    public placingOrder(orderId: string, products: Product[]): Order {
+        var order = new Order(orderId, products);
+        this.orders.push(order);
+        return order;
+    }
+
+    public getUserOrders(): Order[] {
+        return this.orders;
+    }
 }
